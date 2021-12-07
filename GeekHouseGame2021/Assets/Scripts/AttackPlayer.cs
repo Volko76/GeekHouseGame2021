@@ -5,16 +5,14 @@ using UnityEngine;
 public class AttackPlayer : MonoBehaviour
 {
     private GameObject player;
-    // [SerializeField] float vitesse;
+    [SerializeField] float vitesse;
     void Start(){
         if (player == null)
         player = GameObject.FindWithTag("Player");
     }
     void Update(){
         gameObject.transform.LookAt(player.transform);
-        // Vector3 tempVect = new Vector3(1, 0, 0);
-        // tempVect = tempVect * vitesse * Time.deltaTime;
-        // gameObject.GetComponent<Rigidbody>().MovePosition(transform.position + tempVect);
+        gameObject.GetComponent<Rigidbody>().MovePosition(transform.position + transform.forward * vitesse * Time.deltaTime);
     }
     void OnTriggerEnter(Collider other){
         if (other.tag == "Player"){
